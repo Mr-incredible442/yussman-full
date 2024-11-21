@@ -60,6 +60,16 @@ app.use(
   }),
 );
 app.use(express.json());
+app.use((req, res, next) => {
+  const allowedOrigin = 'https://yussman.net';
+  const origin = req.headers.origin;
+
+  if (origin && origin !== allowedOrigin) {
+    return res.status(403).json({ message: 'Access denied' });
+  }
+
+  next();
+});
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
