@@ -54,6 +54,13 @@ mongoose
   });
 
 //middlewares
+app.use((req, res, next) => {
+  if (req.headers.host === 'yussman-62ryj.ondigitalocean.app') {
+    return res.redirect(301, `https://yussman.net${req.url}`);
+  }
+  next();
+});
+
 app.use(
   cors({
     origin: 'https://yussman.net/',
