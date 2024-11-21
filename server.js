@@ -54,7 +54,11 @@ mongoose
   });
 
 //middlewares
-app.use(cors());
+app.use(
+  cors({
+    origin: 'https://yussman.net/',
+  }),
+);
 app.use(express.json());
 
 const __filename = fileURLToPath(import.meta.url);
