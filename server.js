@@ -29,7 +29,9 @@ const app = express();
 //sockets
 const server = createServer(app);
 const io = new Server(server, {
-  cors: '*',
+  cors: {
+    origin: 'https://yussman.net/',
+  },
 });
 
 import { socketConnect } from './routes/supplier.js';
