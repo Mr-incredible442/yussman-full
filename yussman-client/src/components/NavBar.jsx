@@ -15,6 +15,7 @@ function NavBar() {
   const handleLogout = () => {
     dispatch({ type: 'LOGOUT' });
     localStorage.removeItem('user');
+    localStorage.removeItem('accessToken');
   };
 
   useEffect(() => {
@@ -74,6 +75,9 @@ function NavBar() {
               </Nav.Link>
               <Nav.Link as={Link} to={'/shopb'}>
                 Shop B
+              </Nav.Link>
+              <Nav.Link as={Link} to={'/chinsalirestaurant'}>
+                Chinsali
               </Nav.Link>
               {/* <Nav.Link as={Link} to={'/shopc'}>
                 Shop C

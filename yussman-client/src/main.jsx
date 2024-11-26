@@ -16,6 +16,7 @@ import { ShopBContextProvider } from './context/ShopBContext.jsx';
 import { ShopCContextProvider } from './context/ShopCContext.jsx';
 import { ShopWContextProvider } from './context/ShopWContext.jsx';
 import { CreditContextProvider } from './context/CreditContext.jsx';
+import { ChinsaliRestaurantContextProvider } from './context/ChinsaliRestaurantContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -31,9 +32,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                       <GoatContextProvider>
                         <EmployeeContextProvider>
                           <CreditContextProvider>
-                            <BrowserRouter>
-                              <App />
-                            </BrowserRouter>
+                            <ChinsaliRestaurantContextProvider>
+                              <BrowserRouter>
+                                <App />
+                              </BrowserRouter>
+                            </ChinsaliRestaurantContextProvider>
                           </CreditContextProvider>
                         </EmployeeContextProvider>
                       </GoatContextProvider>

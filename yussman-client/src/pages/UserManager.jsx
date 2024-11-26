@@ -41,24 +41,23 @@ function UserManager() {
             <th>First Name</th>
             <th>Last Name</th>
             <th>Number</th>
-            <th>Password</th>
             <th>Role</th>
             <th>Actons</th>
           </tr>
         </thead>
         <tbody className='table-group-divider'>
           {users.length > 0 &&
-            users.map((user, index) => (
+            users.map((user) => (
               <tr key={user._id}>
                 <td className='text-capitalize'>{user.firstName}</td>
                 <td className='text-capitalize'>{user.lastName}</td>
                 <td>{user.number}</td>
-                <td>{index === 0 ? '*****' : user.password}</td>
                 <td className='text-capitalize'>{user.role}</td>
-                <td>
-                  {index !== 0 && (
-                    <DeleteUser id={user._id} getUsers={getUsers} />
-                  )}
+                <td className='d-flex justify-content-center'>
+                  {user.number !== '0972278488' &&
+                    user.number !== '0967162444' && (
+                      <DeleteUser id={user._id} getUsers={getUsers} />
+                    )}
                 </td>
               </tr>
             ))}

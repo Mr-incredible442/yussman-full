@@ -3,7 +3,11 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import path from 'path';
+import { createServer } from 'http';
+import { Server } from 'socket.io';
 import { fileURLToPath } from 'url';
+
+// import { verifyToken } from './middleware/authMiddlleware.js';
 
 // route imports
 import suppliersRoutes from './routes/supplier.js';
@@ -18,10 +22,9 @@ import shopWRoutes from './routes/shopW.js';
 import shopCRoutes from './routes/shopC.js';
 import registerRoutes from './routes/register.js';
 import creditRoutes from './routes/credit.js';
+import chinsaliRestaurantRoutes from './routes/chinsaliRestaurant.js';
 
 //socket stuff
-import { createServer } from 'http';
-import { Server } from 'socket.io';
 
 dotenv.config();
 const app = express();
@@ -31,6 +34,7 @@ const server = createServer(app);
 const io = new Server(server, {
   cors: {
     origin: 'https://yussman.net/',
+    // origin: '*',
   },
 });
 
@@ -64,6 +68,7 @@ app.use((req, res, next) => {
 app.use(
   cors({
     origin: 'https://yussman.net/',
+    // origin: '*',
   }),
 );
 app.use(express.json());
@@ -85,6 +90,7 @@ app.use('/api/shopw', shopWRoutes);
 app.use('/api/shopc', shopCRoutes);
 app.use('/api/register', registerRoutes);
 app.use('/api/credit', creditRoutes);
+app.use('/api/chinsali/restaurant', chinsaliRestaurantRoutes);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'yussman-client', 'dist', 'index.html'));

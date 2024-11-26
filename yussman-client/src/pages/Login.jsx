@@ -29,6 +29,7 @@ function Login() {
       })
       .then((res) => {
         dispatch({ type: 'LOGIN', payload: res.data.user });
+        localStorage.setItem('accessToken', res.data.accessToken);
         localStorage.setItem('user', JSON.stringify(res.data.user));
         setLoading(false);
       })

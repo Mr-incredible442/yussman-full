@@ -7,6 +7,7 @@ import UserManager from './pages/UserManager';
 import Details from './components/restaurant/RestaurantDetails';
 import Store from './pages/Store';
 import Register from './pages/Register';
+import ChinsaliRestaurant from './pages/ChinsaliRestaurant';
 import Employees from './pages/Employees';
 import ShopA1 from './pages/ShopA1';
 import ShopA2 from './pages/ShopA2';
@@ -16,6 +17,7 @@ import ShopW from './pages/ShopW';
 import EmployeeDetails from './components/employees/EmployeeDetails';
 import ShiftDetails from './components/store/ShiftDetails';
 import RegisterDetails from './components/register/RegisterDetails';
+import ChinsaliRestaurantDetails from './components/chinsali restaurant/ChinsaliRestaurantDetails';
 import ShopA1Details from './components/shopA1/ShopA1Details';
 import ShopA2Details from './components/shopA2/ShopA2Details';
 import ShopBDetails from './components/shopB/ShopBDetails';
@@ -50,6 +52,10 @@ function App() {
         <Route
           path='/restaurant'
           element={user ? <Restaurant /> : <Navigate to='/login' />}
+        />
+        <Route
+          path='/chinsalirestaurant'
+          element={user ? <ChinsaliRestaurant /> : <Navigate to='/login' />}
         />
         <Route
           path='/shopa1'
@@ -100,6 +106,12 @@ function App() {
         <Route
           path='/restaurant/:id'
           element={user ? <Details /> : <Navigate to='/login' />}
+        />
+        <Route
+          path='/chinsalirestaurant/:id'
+          element={
+            user ? <ChinsaliRestaurantDetails /> : <Navigate to='/login' />
+          }
         />
         <Route
           path='/shopa1/:id'
