@@ -21,6 +21,8 @@ function Dasboard() {
       <hr />
       <Link to={'/shopb'}>Shop B</Link>
       <hr />
+      <Link to={'/chinsalirestaurant'}>Chinsali</Link>
+      <hr />
       {/* <Link to={'/shopc'}>Shop C</Link>
       <hr />
       <Link to={'/shopw'}>Shop W</Link>
