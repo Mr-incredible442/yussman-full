@@ -80,7 +80,7 @@ function NavBar() {
                 Chinsali
               </Nav.Link>
               <Nav.Link as={Link} to={'/chinsalistore'}>
-                Chinsali Store
+                C Store
               </Nav.Link>
               {/* <Nav.Link as={Link} to={'/shopc'}>
                 Shop C
