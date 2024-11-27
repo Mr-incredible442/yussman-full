@@ -2,13 +2,15 @@ import NavBar from './components/NavBar';
 import Dasboard from './pages/Dasboard';
 import Goat from './pages/Goat';
 import Restaurant from './pages/Restaurant';
+import ChinsaliRestaurant from './pages/ChinsaliRestaurant';
 import Login from './pages/Login';
 import UserManager from './pages/UserManager';
 import Details from './components/restaurant/RestaurantDetails';
 import Store from './pages/Store';
 import ChinsaliStore from './pages/ChinsaliStore';
 import Register from './pages/Register';
-import ChinsaliRestaurant from './pages/ChinsaliRestaurant';
+import ChinsaliRegister from './pages/ChinsaliRegister';
+import ChinsaliRegisterDetails from './components/chinsaliRegister/ChinsaliRegisterDetails';
 import Employees from './pages/Employees';
 import ShopA1 from './pages/ShopA1';
 import ShopA2 from './pages/ShopA2';
@@ -92,6 +94,10 @@ function App() {
           element={user ? <Register /> : <Navigate to='/login' />}
         />
         <Route
+          path='/chinsaliregister'
+          element={user ? <ChinsaliRegister /> : <Navigate to='/login' />}
+        />
+        <Route
           path='/employees'
           element={user ? <Employees /> : <Navigate to='/login' />}
         />
@@ -113,12 +119,7 @@ function App() {
           path='/restaurant/:id'
           element={user ? <Details /> : <Navigate to='/login' />}
         />
-        <Route
-          path='/chinsalirestaurant/:id'
-          element={
-            user ? <ChinsaliRestaurantDetails /> : <Navigate to='/login' />
-          }
-        />
+
         <Route
           path='/shopa1/:id'
           element={user ? <ShopA1Details /> : <Navigate to='/login' />}
@@ -156,6 +157,18 @@ function App() {
         <Route
           path='/register/:id'
           element={user ? <RegisterDetails /> : <Navigate to='/login' />}
+        />
+        <Route
+          path='/chinsaliregister/:id'
+          element={
+            user ? <ChinsaliRegisterDetails /> : <Navigate to='/login' />
+          }
+        />
+        <Route
+          path='/chinsalirestaurant/:id'
+          element={
+            user ? <ChinsaliRestaurantDetails /> : <Navigate to='/login' />
+          }
         />
         <Route
           path='/credit/:id'

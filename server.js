@@ -26,6 +26,7 @@ import creditRoutes from './routes/credit.js';
 //chinsali
 import chinsaliRestaurantRoutes from './routes/chinsaliRestaurant.js';
 import chinsaliStoreRoutes from './routes/chinsaliStore.js';
+import chinsaliRegisterRoutes from './routes/chinsaliRegister.js';
 
 //socket stuff
 
@@ -98,6 +99,7 @@ app.use('/api/credit', creditRoutes);
 //chinsali
 app.use('/api/chinsali/restaurant', chinsaliRestaurantRoutes);
 app.use('/api/chinsali/store', chinsaliStoreRoutes);
+app.use('/api/chinsali/register', chinsaliRegisterRoutes);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'yussman-client', 'dist', 'index.html'));

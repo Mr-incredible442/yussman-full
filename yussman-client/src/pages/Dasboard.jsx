@@ -25,6 +25,8 @@ function Dasboard() {
       <hr />
       <Link to={'/chinsalistore'}>Chinsali store</Link>
       <hr />
+      <Link to={'/chinsaliregister'}>Chinsali Register</Link>
+      <hr />
       {/* <Link to={'/shopc'}>Shop C</Link>
       <hr />
       <Link to={'/shopw'}>Shop W</Link>

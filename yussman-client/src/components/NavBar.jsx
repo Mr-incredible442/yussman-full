@@ -84,6 +84,9 @@ function NavBar() {
                 <NavDropdown.Item as={Link} to={'/chinsalistore'}>
                   Store
                 </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to={'/chinsaliregister'}>
+                  Register
+                </NavDropdown.Item>
               </NavDropdown>
               {/* <Nav.Link as={Link} to={'/shopc'}>
                 Shop C

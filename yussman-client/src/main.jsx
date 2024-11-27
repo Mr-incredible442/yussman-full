@@ -19,6 +19,7 @@ import { CreditContextProvider } from './context/CreditContext.jsx';
 
 import { ChinsaliRestaurantContextProvider } from './context/ChinsaliRestaurantContext.jsx';
 import { ChinsaliStoreContextProvider } from './context/ChinsaliStoreContext.jsx';
+import { ChinsaliRegisterContextProvider } from './context/ChinsaliRegisterContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -36,9 +37,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                           <CreditContextProvider>
                             <ChinsaliRestaurantContextProvider>
                               <ChinsaliStoreContextProvider>
-                                <BrowserRouter>
-                                  <App />
-                                </BrowserRouter>
+                                <ChinsaliRegisterContextProvider>
+                                  <BrowserRouter>
+                                    <App />
+                                  </BrowserRouter>
+                                </ChinsaliRegisterContextProvider>
                               </ChinsaliStoreContextProvider>
                             </ChinsaliRestaurantContextProvider>
                           </CreditContextProvider>
