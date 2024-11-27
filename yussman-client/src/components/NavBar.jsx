@@ -1,6 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
 import Theme from './Theme';
 import { Button } from 'react-bootstrap';
@@ -76,12 +77,14 @@ function NavBar() {
               <Nav.Link as={Link} to={'/shopb'}>
                 Shop B
               </Nav.Link>
-              <Nav.Link as={Link} to={'/chinsalirestaurant'}>
-                Chinsali R
-              </Nav.Link>
-              <Nav.Link as={Link} to={'/chinsalistore'}>
-                Chinsali S
-              </Nav.Link>
+              <NavDropdown title='Chinsali' id='basic-nav-dropdown'>
+                <NavDropdown.Item as={Link} to={'/chinsalirestaurant'}>
+                  Restaurant
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to={'/chinsalistore'}>
+                  Store
+                </NavDropdown.Item>
+              </NavDropdown>
               {/* <Nav.Link as={Link} to={'/shopc'}>
                 Shop C
               </Nav.Link>
