@@ -77,10 +77,10 @@ function NavBar() {
                 Shop B
               </Nav.Link>
               <Nav.Link as={Link} to={'/chinsalirestaurant'}>
-                Chinsali
+                Chinsali R
               </Nav.Link>
               <Nav.Link as={Link} to={'/chinsalistore'}>
-                C Store
+                Chinsali S
               </Nav.Link>
               {/* <Nav.Link as={Link} to={'/shopc'}>
                 Shop C
