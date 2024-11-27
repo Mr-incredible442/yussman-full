@@ -10,10 +10,10 @@ import { fileURLToPath } from 'url';
 // import { verifyToken } from './middleware/authMiddlleware.js';
 
 // route imports
+import usersRoutes from './routes/users.js';
 import suppliersRoutes from './routes/supplier.js';
 import restaurantRoutes from './routes/restaurant.js';
 import storeRoutes from './routes/store.js';
-import usersRoutes from './routes/users.js';
 import employeeRoutes from './routes/employee.js';
 import shopA1Routes from './routes/shopA1.js';
 import shopA2Routes from './routes/shopA2.js';
@@ -22,7 +22,10 @@ import shopWRoutes from './routes/shopW.js';
 import shopCRoutes from './routes/shopC.js';
 import registerRoutes from './routes/register.js';
 import creditRoutes from './routes/credit.js';
+
+//chinsali
 import chinsaliRestaurantRoutes from './routes/chinsaliRestaurant.js';
+import chinsaliStoreRoutes from './routes/chinsaliStore.js';
 
 //socket stuff
 
@@ -78,9 +81,10 @@ const __dirname = path.dirname(__filename);
 
 app.use(express.static(path.join(__dirname, 'yussman-client', 'dist')));
 
+//serenje
+app.use('/api/users', usersRoutes);
 app.use('/api/goat', suppliersRoutes);
 app.use('/api/restaurant', restaurantRoutes);
-app.use('/api/users', usersRoutes);
 app.use('/api/store', storeRoutes);
 app.use('/api/employee', employeeRoutes);
 app.use('/api/shopa1', shopA1Routes);
@@ -90,7 +94,10 @@ app.use('/api/shopw', shopWRoutes);
 app.use('/api/shopc', shopCRoutes);
 app.use('/api/register', registerRoutes);
 app.use('/api/credit', creditRoutes);
+
+//chinsali
 app.use('/api/chinsali/restaurant', chinsaliRestaurantRoutes);
+app.use('/api/chinsali/store', chinsaliStoreRoutes);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'yussman-client', 'dist', 'index.html'));

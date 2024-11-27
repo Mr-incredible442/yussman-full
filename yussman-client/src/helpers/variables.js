@@ -13,3 +13,4 @@ export const SHOPC_URL = `${BASE_URL}api/shopc`;
 export const SHOPW_URL = `${BASE_URL}api/shopw`;
 export const CREDIT_URL = `${BASE_URL}api/credit`;
 export const CHINSALI_RESTAURANT_URL = `${BASE_URL}api/chinsali/restaurant`;
+export const CHINSALI_STORE_URL = `${BASE_URL}api/chinsali/store`;
