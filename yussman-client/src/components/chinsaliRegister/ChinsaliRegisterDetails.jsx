@@ -85,7 +85,7 @@ function RegisterDetails() {
                     <th>Unit Price</th>
                     <th>Price Sold</th>
                     <th>Profit</th>
-                    <th>From</th>
+                    {/* <th>From</th> */}
                   </tr>
                 </thead>
                 <tbody className='table-group-divider'>
@@ -101,7 +101,7 @@ function RegisterDetails() {
                       <td>
                         K{item.quantity * item.unitPrice - item.priceBought}
                       </td>
-                      <td>{item.section}</td>
+                      {/* <td>{item.section}</td> */}
                     </tr>
                   ))}
                 </tbody>

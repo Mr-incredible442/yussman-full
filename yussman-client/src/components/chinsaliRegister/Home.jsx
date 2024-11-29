@@ -116,7 +116,7 @@ function Home() {
             <th>Price Sold</th>
             {user && user.role === 'admin' && <th>Profit</th>}
             {user && user.role === 'admin' && <th>Profit %</th>}
-            <th>From</th>
+            {/* <th>From</th> */}
             {user && user.role === 'admin' && <th>Action</th>}
           </tr>
         </thead>
@@ -163,7 +163,7 @@ function Home() {
                     </td>
                   </>
                 )}
-                <td>{item.section}</td>
+                {/* <td>{item.section}</td> */}
                 {user && user.role === 'admin' && (
                   <td className='d-flex justify-content-center gap-2'>
                     <UpdateProductModal id={RegisterShift._id} item={item} />

@@ -136,13 +136,13 @@ const Details = () => {
 
   return (
     <Container fluid='xxl'>
-      <div className='d-flex justify-content-between mt-3 mx-3'>
+      <div className='d-flex justify-content-between mt-3 mx-3 text-capitalize'>
         <p>Date : {shift.date}</p>
         <p>Shift : {shift.shift}</p>
         <div className='d-flex'>
           <p>Cashiers : </p>
           {shift.cashier.map((cashier) => (
-            <p className='mx-2' key={Math.floor(Math.random() * 10_000)}>
+            <p className='mx-2 ' key={Math.floor(Math.random() * 10_000)}>
               {cashier}
             </p>
           ))}
@@ -350,7 +350,7 @@ const Details = () => {
           <Row>
             <Col>
               <h3 className='text-center'>Busses</h3>
-              <Table className='text-center' size='sm'>
+              <Table className='text-center mt-3' size='sm'>
                 <thead>
                   <tr>
                     <th>Bus Name</th>
@@ -391,6 +391,26 @@ const Details = () => {
               </Table>
             </Col>
           </Row>
+        </Tab>
+        <Tab eventKey='credit' title='Credit'>
+          <Table className='text-center' size='sm'>
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody className='table-group-divider'>
+              {shift.credit.map((credit) => (
+                <tr
+                  key={Math.floor(Math.random() * 100_000)}
+                  id={Math.floor(Math.random() * 100_000)}>
+                  <td className='text-capitalize'>{credit.description}</td>
+                  <td>K{credit.amount.toLocaleString()}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
         </Tab>
       </Tabs>
     </Container>
