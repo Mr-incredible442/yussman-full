@@ -16,3 +16,46 @@ input[type='number'] {
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
 }
+
+.captcha-container {
+  width: 300px; /* Match the width of the CAPTCHA */
+  height: 65px; /* Match the height of the CAPTCHA */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: #fafafa; /* Matches Turnstile's light theme */
+  border: 1px solid #e0e0e0; /* Matches Turnstile's border */
+  box-sizing: border-box;
+}
+
+.captcha-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e0e0e0;
+  border-top: 4px solid #007bff; /* Spinner accent color */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Optional: Dark theme adjustments */
+@media (prefers-color-scheme: dark) {
+  .captcha-container {
+    background-color: #232323;
+    border-color: #797979;
+  }
+
+  .captcha-spinner {
+    border: 4px solid #797979;
+    border-top: 4px solid #007bff;
+  }
+}
