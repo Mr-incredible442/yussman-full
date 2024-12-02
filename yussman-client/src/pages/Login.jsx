@@ -91,7 +91,10 @@ function Login() {
               }}
             />
           </div>
-          <Button variant='primary' type='submit' disabled={loading}>
+          <Button
+            variant='primary'
+            type='submit'
+            disabled={loading || !turnstileToken}>
             {loading ? 'Loading...' : 'Login'}
           </Button>
         </Form>
