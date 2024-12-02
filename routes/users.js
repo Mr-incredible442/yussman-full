@@ -2,6 +2,7 @@ import express from 'express';
 import User from '../model/Users.schema.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import axios from 'axios';
 
 import { verifyToken } from '../middleware/authMiddlleware.js';
 
@@ -9,9 +10,26 @@ const router = express.Router();
 
 // login route
 router.post('/login', async (req, res) => {
-  const { number, password } = req.body;
+  const { number, password, turnstileToken } = req.body;
+
+  if (!turnstileToken) {
+    return res.status(400).json({ msg: 'CAPTCHA verification failed' });
+  }
 
   try {
+    // Verify Turnstile token with Cloudflare
+    const verifyResponse = await axios.post(
+      'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+      new URLSearchParams({
+        secret: '0x4AAAAAAA1VaJbl0PgBlGzd-RXrV4WFoQ0', // Your Turnstile secret key
+        response: turnstileToken,
+      }),
+    );
+
+    if (!verifyResponse.data.success) {
+      return res.status(400).json({ msg: 'CAPTCHA verification failed' });
+    }
+
     if (!number || !password) {
       return res.status(400).json({ msg: 'All fields must be filled' });
     }
@@ -34,8 +52,8 @@ router.post('/login', async (req, res) => {
         number: user.number,
         role: user.role,
         id: user._id,
-      }, // Payload
-      process.env.JWT_ACCESS_SECRET, // Secret
+      },
+      process.env.JWT_ACCESS_SECRET,
       // { expiresIn: process.env.JWT_EXPIRES_IN }, // Options
     );
 

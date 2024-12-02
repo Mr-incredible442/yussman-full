@@ -1,12 +1,13 @@
+import { useState, useContext, useEffect } from 'react';
+import axios from 'axios';
+import { Turnstile } from '@marsidev/react-turnstile';
+
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-import { useState, useContext, useEffect } from 'react';
-import axios from 'axios';
-import { AuthContext } from '../context/AuthContext';
-
 import { LOCAL_URL } from '../helpers/variables';
+import { AuthContext } from '../context/AuthContext';
 
 function Login() {
   useEffect(() => {
@@ -16,16 +17,24 @@ function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState('');
 
   const { dispatch } = useContext(AuthContext);
 
   const handleSignin = (e) => {
     e.preventDefault();
+
+    if (!turnstileToken) {
+      setError('Please complete the CAPTCHA');
+      return;
+    }
+
     setLoading(true);
     axios
       .post(`${LOCAL_URL}/users/login`, {
         number,
         password,
+        turnstileToken,
       })
       .then((res) => {
         dispatch({ type: 'LOGIN', payload: res.data.user });
@@ -68,6 +77,12 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
+          <div className='mb-3'>
+            <Turnstile
+              siteKey='0x4AAAAAAA1VaDipmssLJgnP'
+              onVerify={(token) => setTurnstileToken(token)}
+            />
+          </div>
           <Button variant='primary' type='submit' disabled={loading}>
             {loading ? 'Loading...' : 'Login'}
           </Button>
