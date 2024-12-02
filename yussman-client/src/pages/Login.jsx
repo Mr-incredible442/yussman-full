@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
-import { Turnstile } from '@marsidev/react-turnstile';
+import Turnstile from 'react-turnstile';
 
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -23,13 +23,13 @@ function Login() {
 
   const handleSignin = (e) => {
     e.preventDefault();
+    setLoading(true);
 
     if (!turnstileToken) {
       setError('Please complete the CAPTCHA');
       return;
     }
 
-    setLoading(true);
     axios
       .post(`${LOCAL_URL}/users/login`, {
         number,
@@ -43,7 +43,7 @@ function Login() {
         setLoading(false);
       })
       .catch((err) => {
-        setError(err.response.data.msg);
+        setError(err.response?.data?.msg || 'An error occurred');
         setLoading(false);
       });
   };
@@ -77,10 +77,18 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
+
           <div className='mb-3'>
             <Turnstile
-              siteKey='0x4AAAAAAA1VaDipmssLJgnP'
+              sitekey='0x4AAAAAAA1VaDipmssLJgnP'
               onVerify={(token) => setTurnstileToken(token)}
+              onError={() =>
+                setError('CAPTCHA failed to load. Please refresh the page.')
+              }
+              onExpire={() => {
+                setTurnstileToken('');
+                setError('CAPTCHA expired. Please try again.');
+              }}
             />
           </div>
           <Button variant='primary' type='submit' disabled={loading}>

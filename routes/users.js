@@ -21,7 +21,7 @@ router.post('/login', async (req, res) => {
     const verifyResponse = await axios.post(
       'https://challenges.cloudflare.com/turnstile/v0/siteverify',
       new URLSearchParams({
-        secret: '0x4AAAAAAA1VaJbl0PgBlGzd-RXrV4WFoQ0', // Your Turnstile secret key
+        secret: process.env.TURNSTILE_SECRET,
         response: turnstileToken,
       }),
     );
