@@ -21,6 +21,10 @@ import { ChinsaliRestaurantContextProvider } from './context/ChinsaliRestaurantC
 import { ChinsaliStoreContextProvider } from './context/ChinsaliStoreContext.jsx';
 import { ChinsaliRegisterContextProvider } from './context/ChinsaliRegisterContext.jsx';
 
+import { ChansaRestaurantContextProvider } from './context/ChansaRestaurantContext.jsx';
+import { ChansaStoreContextProvider } from './context/ChansaStoreContext.jsx';
+import { ChansaRegisterContextProvider } from './context/ChansaRegisterContext.jsx';
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthContextProvider>
@@ -38,9 +42,15 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                             <ChinsaliRestaurantContextProvider>
                               <ChinsaliStoreContextProvider>
                                 <ChinsaliRegisterContextProvider>
-                                  <BrowserRouter>
-                                    <App />
-                                  </BrowserRouter>
+                                  <ChansaRestaurantContextProvider>
+                                    <ChansaStoreContextProvider>
+                                      <ChansaRegisterContextProvider>
+                                        <BrowserRouter>
+                                          <App />
+                                        </BrowserRouter>
+                                      </ChansaRegisterContextProvider>
+                                    </ChansaStoreContextProvider>
+                                  </ChansaRestaurantContextProvider>
                                 </ChinsaliRegisterContextProvider>
                               </ChinsaliStoreContextProvider>
                             </ChinsaliRestaurantContextProvider>

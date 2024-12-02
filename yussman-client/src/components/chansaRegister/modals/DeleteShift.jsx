@@ -7,31 +7,33 @@ import Modal from 'react-bootstrap/Modal';
 
 import { AiOutlineDelete } from 'react-icons/ai';
 
-import { LOCAL_URL } from '../../../helpers/variables';
+import { CHANSA_REGISTER_URL } from '../../../helpers/variables';
 
-function DeleteUser({ id, getUsers }) {
+function DeleteShift({ shiftId, getShifts }) {
   const [show, setShow] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
-  const token = localStorage.getItem('accessToken');
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const deleteUser = () => {
+  const deleteShift = () => {
     setIsLoading(true);
+
+    if (isLoading) {
+      return;
+    }
+
     axios
-      .delete(`${LOCAL_URL}/users/${id}`, {
-        headers: { authorization: `Bearer ${token}` },
-      })
+      .delete(`${CHANSA_REGISTER_URL}/${shiftId}`)
       .then(() => {
-        getUsers();
         handleClose();
         setIsLoading(false);
+        getShifts();
       })
       .catch((err) => {
         console.log(err);
         setIsLoading(false);
+        handleClose();
       });
   };
 
@@ -61,7 +63,7 @@ function DeleteUser({ id, getUsers }) {
             variant='outline-danger'
             disabled={isLoading}
             onClick={() => {
-              deleteUser();
+              deleteShift();
             }}>
             {isLoading ? 'Deleting...' : 'Yes'}
           </Button>
@@ -71,4 +73,4 @@ function DeleteUser({ id, getUsers }) {
   );
 }
 
-export default DeleteUser;
+export default DeleteShift;

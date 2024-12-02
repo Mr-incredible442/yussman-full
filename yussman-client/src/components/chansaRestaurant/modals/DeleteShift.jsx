@@ -7,32 +7,39 @@ import Modal from 'react-bootstrap/Modal';
 
 import { AiOutlineDelete } from 'react-icons/ai';
 
-import { LOCAL_URL } from '../../../helpers/variables';
+import { CHANSA_RESTAURANT_URL } from '../../../helpers/variables';
 
-function DeleteUser({ id, getUsers }) {
+function DeleteShift({
+  shiftId,
+  fetchData,
+  disableDeleteBtn,
+  setDisableDeleteBtn,
+}) {
   const [show, setShow] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
-  const token = localStorage.getItem('accessToken');
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const deleteUser = () => {
+  const deleteShift = () => {
     setIsLoading(true);
     axios
-      .delete(`${LOCAL_URL}/users/${id}`, {
-        headers: { authorization: `Bearer ${token}` },
-      })
+      .delete(`${CHANSA_RESTAURANT_URL}/${shiftId}`)
       .then(() => {
-        getUsers();
+        window.location.reload();
         handleClose();
         setIsLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
         setIsLoading(false);
+        handleClose();
       });
+    setTimeout(() => {
+      fetchData();
+      setIsLoading(false);
+      handleClose();
+    }, 50);
   };
 
   return (
@@ -40,7 +47,10 @@ function DeleteUser({ id, getUsers }) {
       <Button
         variant='outline-danger'
         size='sm'
-        onClick={handleShow}
+        onClick={() => {
+          handleShow(), setDisableDeleteBtn(true);
+        }}
+        disabled={disableDeleteBtn}
         className='d-flex justify-content-center align-items-center'>
         <AiOutlineDelete />
       </Button>
@@ -61,7 +71,7 @@ function DeleteUser({ id, getUsers }) {
             variant='outline-danger'
             disabled={isLoading}
             onClick={() => {
-              deleteUser();
+              deleteShift();
             }}>
             {isLoading ? 'Deleting...' : 'Yes'}
           </Button>
@@ -71,4 +81,4 @@ function DeleteUser({ id, getUsers }) {
   );
 }
 
-export default DeleteUser;
+export default DeleteShift;

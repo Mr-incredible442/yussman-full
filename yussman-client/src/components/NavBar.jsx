@@ -68,15 +68,17 @@ function NavBar() {
               <Nav.Link as={Link} to={'/restaurant'}>
                 Restaurant
               </Nav.Link>
-              <Nav.Link as={Link} to={'/shopa1'}>
-                Shop A1
-              </Nav.Link>
-              <Nav.Link as={Link} to={'/shopa2'}>
-                Shop A2
-              </Nav.Link>
-              <Nav.Link as={Link} to={'/shopb'}>
-                Shop B
-              </Nav.Link>
+              <NavDropdown title='Shops' id='basic-nav-dropdown'>
+                <NavDropdown.Item as={Link} to={'/shopa1'}>
+                  Shop A1
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to={'/shopa2'}>
+                  Shop A2
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to={'/shopb'}>
+                  Shop B
+                </NavDropdown.Item>
+              </NavDropdown>
               <NavDropdown title='Chinsali' id='basic-nav-dropdown'>
                 <NavDropdown.Item as={Link} to={'/chinsalirestaurant'}>
                   Restaurant
@@ -85,6 +87,17 @@ function NavBar() {
                   Store
                 </NavDropdown.Item>
                 <NavDropdown.Item as={Link} to={'/chinsaliregister'}>
+                  Register
+                </NavDropdown.Item>
+              </NavDropdown>
+              <NavDropdown title='Chansa' id='basic-nav-dropdown'>
+                <NavDropdown.Item as={Link} to={'/chansarestaurant'}>
+                  Restaurant
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to={'/chansastore'}>
+                  Store
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to={'/chansaregister'}>
                   Register
                 </NavDropdown.Item>
               </NavDropdown>

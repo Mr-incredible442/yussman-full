@@ -15,6 +15,9 @@ function NewUserModal({ setUsers }) {
   const [password, setpassword] = useState('');
   const [role, setrole] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const token = localStorage.getItem('accessToken');
 
   const [show, setShow] = useState(false);
 
@@ -31,21 +34,33 @@ function NewUserModal({ setUsers }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsLoading(true);
+    setError('');
     axios
-      .post(`${LOCAL_URL}/users/signup`, {
-        firstName: firstName.toLowerCase(),
-        lastName: lastName.toLowerCase(),
-        number,
-        password,
-        role,
-      })
+      .post(
+        `${LOCAL_URL}/users/signup`,
+        {
+          firstName: firstName.toLowerCase(),
+          lastName: lastName.toLowerCase(),
+          number,
+          password,
+          role,
+        },
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        },
+      )
       .then((res) => {
         setUsers(res.data.users);
         handleClear();
         handleClose();
         setIsLoading(false);
+        setError('');
       })
       .catch((err) => {
+        setError(err.response.data.msg);
         console.log(err.response.data.msg);
         setIsLoading(false);
       });
@@ -71,6 +86,7 @@ function NewUserModal({ setUsers }) {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
+            {error && <p className='text-danger'>{error}</p>}
             <Form.Group className='mb-3'>
               <Form.Label>First Name</Form.Label>
               <Form.Control

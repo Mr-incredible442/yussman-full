@@ -7,25 +7,25 @@ import Modal from 'react-bootstrap/Modal';
 
 import { AiOutlineDelete } from 'react-icons/ai';
 
-import { LOCAL_URL } from '../../../helpers/variables';
+import { CHANSA_REGISTER_URL } from '../../../helpers/variables';
 
-function DeleteUser({ id, getUsers }) {
+function DeleteProduct({ id, shiftId }) {
   const [show, setShow] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
-  const token = localStorage.getItem('accessToken');
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const deleteUser = () => {
+  const deleteProduct = () => {
     setIsLoading(true);
+
+    if (isLoading) {
+      return;
+    }
+
     axios
-      .delete(`${LOCAL_URL}/users/${id}`, {
-        headers: { authorization: `Bearer ${token}` },
-      })
+      .post(`${CHANSA_REGISTER_URL}/${shiftId}/deletestock/${id}`)
       .then(() => {
-        getUsers();
         handleClose();
         setIsLoading(false);
       })
@@ -61,7 +61,7 @@ function DeleteUser({ id, getUsers }) {
             variant='outline-danger'
             disabled={isLoading}
             onClick={() => {
-              deleteUser();
+              deleteProduct();
             }}>
             {isLoading ? 'Deleting...' : 'Yes'}
           </Button>
@@ -71,4 +71,4 @@ function DeleteUser({ id, getUsers }) {
   );
 }
 
-export default DeleteUser;
+export default DeleteProduct;

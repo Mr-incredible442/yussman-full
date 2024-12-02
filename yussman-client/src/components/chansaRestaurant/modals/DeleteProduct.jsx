@@ -4,28 +4,22 @@ import axios from 'axios';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-
 import { AiOutlineDelete } from 'react-icons/ai';
 
-import { LOCAL_URL } from '../../../helpers/variables';
+import { CHANSA_RESTAURANT_URL } from '../../../helpers/variables';
 
-function DeleteUser({ id, getUsers }) {
+function DeleteProduct({ endpoint, id, shiftId }) {
   const [show, setShow] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
-  const token = localStorage.getItem('accessToken');
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const deleteUser = () => {
+  const deleteReceived = () => {
     setIsLoading(true);
     axios
-      .delete(`${LOCAL_URL}/users/${id}`, {
-        headers: { authorization: `Bearer ${token}` },
-      })
+      .delete(`${CHANSA_RESTAURANT_URL}/${shiftId}/${endpoint}/${id}`)
       .then(() => {
-        getUsers();
         handleClose();
         setIsLoading(false);
       })
@@ -41,7 +35,7 @@ function DeleteUser({ id, getUsers }) {
         variant='outline-danger'
         size='sm'
         onClick={handleShow}
-        className='d-flex justify-content-center align-items-center'>
+        className='d-flex mx-2  justify-content-center align-items-center'>
         <AiOutlineDelete />
       </Button>
 
@@ -61,7 +55,7 @@ function DeleteUser({ id, getUsers }) {
             variant='outline-danger'
             disabled={isLoading}
             onClick={() => {
-              deleteUser();
+              deleteReceived();
             }}>
             {isLoading ? 'Deleting...' : 'Yes'}
           </Button>
@@ -71,4 +65,4 @@ function DeleteUser({ id, getUsers }) {
   );
 }
 
-export default DeleteUser;
+export default DeleteProduct;

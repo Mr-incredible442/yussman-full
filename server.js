@@ -28,6 +28,11 @@ import chinsaliRestaurantRoutes from './routes/chinsaliRestaurant.js';
 import chinsaliStoreRoutes from './routes/chinsaliStore.js';
 import chinsaliRegisterRoutes from './routes/chinsaliRegister.js';
 
+//chansa
+import chansaRestaurantRoutes from './routes/chansaRestaurant.js';
+import chansaStoreRoutes from './routes/chansaStore.js';
+import chansaRegisterRoutes from './routes/chansaRegister.js';
+
 //socket stuff
 
 dotenv.config();
@@ -37,8 +42,8 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: 'https://yussman.net/',
-    // origin: '*',
+    // origin: 'https://yussman.net/',
+    origin: '*',
   },
 });
 
@@ -71,8 +76,8 @@ app.use((req, res, next) => {
 
 app.use(
   cors({
-    origin: 'https://yussman.net/',
-    // origin: '*',
+    // origin: 'https://yussman.net/',
+    origin: '*',
   }),
 );
 app.use(express.json());
@@ -100,6 +105,11 @@ app.use('/api/credit', creditRoutes);
 app.use('/api/chinsali/restaurant', chinsaliRestaurantRoutes);
 app.use('/api/chinsali/store', chinsaliStoreRoutes);
 app.use('/api/chinsali/register', chinsaliRegisterRoutes);
+
+//chansa
+app.use('/api/chansa/restaurant', chansaRestaurantRoutes);
+app.use('/api/chansa/store', chansaStoreRoutes);
+app.use('/api/chansa/register', chansaRegisterRoutes);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'yussman-client', 'dist', 'index.html'));

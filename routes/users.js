@@ -3,6 +3,8 @@ import User from '../model/Users.schema.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
+import { verifyToken } from '../middleware/authMiddlleware.js';
+
 const router = express.Router();
 
 // login route
@@ -47,7 +49,7 @@ router.post('/login', async (req, res) => {
 });
 
 //signup route
-router.post('/signup', async (req, res) => {
+router.post('/signup', verifyToken, async (req, res) => {
   const { firstName, lastName, number, password, role } = req.body;
 
   try {
@@ -78,7 +80,7 @@ router.post('/signup', async (req, res) => {
 });
 
 //get all users
-router.get('/', async (req, res) => {
+router.get('/', verifyToken, async (req, res) => {
   try {
     const users = await User.find().select('-password');
     res.status(200).json({ users });
@@ -88,7 +90,7 @@ router.get('/', async (req, res) => {
 });
 
 //delete a user
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', verifyToken, async (req, res) => {
   try {
     await User.findByIdAndDelete(req.params.id);
 

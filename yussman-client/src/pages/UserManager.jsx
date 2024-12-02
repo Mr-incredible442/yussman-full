@@ -15,8 +15,12 @@ function UserManager() {
   }, []);
 
   const getUsers = useCallback(() => {
+    const token = localStorage.getItem('accessToken');
+
     axios
-      .get(`${LOCAL_URL}/users`)
+      .get(`${LOCAL_URL}/users`, {
+        headers: { authorization: `Bearer ${token}` },
+      })
       .then((res) => {
         setUsers(res.data.users);
       })
