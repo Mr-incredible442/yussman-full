@@ -85,11 +85,9 @@ function Login() {
 
           <div className='captcha-container mb-3'>
             {!captchaLoaded && (
-              <div className='captcha-spinner'>
-                <Spinner animation='border' role='status'>
-                  <span className='visually-hidden'>Loading...</span>
-                </Spinner>
-              </div>
+              <Spinner animation='border' role='status'>
+                <span className='visually-hidden'>Loading...</span>
+              </Spinner>
             )}
             <Turnstile
               sitekey='0x4AAAAAAA1VaDipmssLJgnP'
