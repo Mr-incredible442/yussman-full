@@ -5,6 +5,7 @@ import Turnstile from 'react-turnstile';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
 
 import { LOCAL_URL } from '../helpers/variables';
 import { AuthContext } from '../context/AuthContext';
@@ -83,7 +84,11 @@ function Login() {
           </Form.Group>
 
           <div className='mb-3'>
-            {!captchaLoaded && <p className='text-muted'>Loading CAPTCHA...</p>}
+            {!captchaLoaded && (
+              <Spinner animation='border' role='status'>
+                <span className='visually-hidden'>Loading...</span>
+              </Spinner>
+            )}
             <Turnstile
               sitekey='0x4AAAAAAA1VaDipmssLJgnP'
               onVerify={(token) => setTurnstileToken(token)}
@@ -95,6 +100,7 @@ function Login() {
                 setError('CAPTCHA expired. Please try again.');
               }}
               onLoad={() => setCaptchaLoaded(true)}
+              fixedSize={true}
             />
           </div>
           <Button
