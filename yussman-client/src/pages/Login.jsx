@@ -13,10 +13,12 @@ function Login() {
   useEffect(() => {
     document.title = 'Yussman - Login';
   }, []);
+
   const [number, setNumber] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [captchaLoaded, setCaptchaLoaded] = useState(false);
   const [turnstileToken, setTurnstileToken] = useState('');
 
   const { dispatch } = useContext(AuthContext);
@@ -27,6 +29,7 @@ function Login() {
 
     if (!turnstileToken) {
       setError('Please complete the CAPTCHA');
+      setLoading(false);
       return;
     }
 
@@ -47,17 +50,18 @@ function Login() {
         setLoading(false);
       });
   };
+
   return (
     <Container>
-      <div className='w-50 mx-auto mt-5 border p-5 rounded '>
+      <div className='w-50 mx-auto mt-5 border p-5 rounded'>
         <h2 className='text-center'>Login</h2>
-        <p className='text-danger'> {error}</p>
+        <p className='text-danger'>{error}</p>
         <Form onSubmit={handleSignin}>
           <Form.Group className='mb-3' controlId='number'>
             <Form.Label>Number</Form.Label>
             <Form.Control
               type='text'
-              placeholder='Enter  number'
+              placeholder='Enter number'
               required
               autoFocus
               minLength={10}
@@ -79,6 +83,7 @@ function Login() {
           </Form.Group>
 
           <div className='mb-3'>
+            {!captchaLoaded && <p className='text-muted'>Loading CAPTCHA...</p>}
             <Turnstile
               sitekey='0x4AAAAAAA1VaDipmssLJgnP'
               onVerify={(token) => setTurnstileToken(token)}
@@ -89,12 +94,13 @@ function Login() {
                 setTurnstileToken('');
                 setError('CAPTCHA expired. Please try again.');
               }}
+              onLoad={() => setCaptchaLoaded(true)}
             />
           </div>
           <Button
             variant='primary'
             type='submit'
-            disabled={loading || !turnstileToken}>
+            disabled={loading || !turnstileToken || !captchaLoaded}>
             {loading ? 'Loading...' : 'Login'}
           </Button>
         </Form>
