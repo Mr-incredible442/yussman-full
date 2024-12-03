@@ -83,7 +83,13 @@ function Login() {
             />
           </Form.Group>
 
-          <div className='mb-3' style={{ width: '300px', height: '65px' }}>
+          <div
+            className='mb-3'
+            style={{
+              width: '300px',
+              height: '65px',
+              border: '1px solid #515252',
+            }}>
             {!captchaLoaded && (
               <Spinner animation='border' role='status' className='ms-4 mt-3'>
                 <span className='visually-hidden'>Loading...</span>
