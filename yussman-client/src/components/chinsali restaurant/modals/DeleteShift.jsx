@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import axios from 'axios';
+import apiCall from '../../../helpers/apiCall';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -23,7 +23,7 @@ function DeleteShift({
 
   const deleteShift = () => {
     setIsLoading(true);
-    axios
+    apiCall
       .delete(`${CHINSALI_RESTAURANT_URL}/${shiftId}`)
       .then(() => {
         window.location.reload();

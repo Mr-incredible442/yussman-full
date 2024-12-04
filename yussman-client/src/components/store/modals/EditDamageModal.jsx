@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState, useContext } from 'react';
-import axios from 'axios';
+import apiCall from '../../../helpers/apiCall';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -42,7 +42,7 @@ function EditNameModal({ id, stock }) {
       ostock: Number(ostock),
       damage: Number(damage),
     };
-    axios
+    apiCall
       .post(`${STORE_LOCAL_URL}/${id}/updatestock/${stock._id}`, modalData)
       .then(() => {
         handleClear();

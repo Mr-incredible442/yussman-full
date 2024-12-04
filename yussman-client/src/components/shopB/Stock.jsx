@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from 'react';
-import axios from 'axios';
+import apiCall from '../../helpers/apiCall';
 
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
@@ -84,7 +84,7 @@ function Stock() {
       cstock: Number(editedCStock),
     };
 
-    axios
+    apiCall
       .post(`${SHOPB_URL}/${shopBShift._id}/editstock/${itemId}`, modalData)
       .then(() => {
         // Clear the editing state for the current item

@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect, useState } from 'react';
 
-import axios from 'axios';
+import apiCall from '../../helpers/apiCall';
 
 import { Container, Row, Col } from 'react-bootstrap';
 
@@ -57,7 +57,7 @@ function Final() {
   }, [check]);
 
   const handleDeleteDate = () => {
-    axios
+    apiCall
       .post(`${CHINSALI_STORE_URL}/${storeShift._id}/deletedate`)
       .then(() => {
         check();
@@ -65,7 +65,7 @@ function Final() {
   };
 
   const handleDeleteAccountant = () => {
-    axios
+    apiCall
       .post(`${CHINSALI_STORE_URL}/${storeShift._id}/deleteaccountant`)
       .then(() => {
         check();
@@ -73,7 +73,7 @@ function Final() {
   };
 
   const handleDeleteKeeper = () => {
-    axios
+    apiCall
       .post(`${CHINSALI_STORE_URL}/${storeShift._id}/deletekeeper`)
       .then(() => {
         check();
@@ -81,7 +81,7 @@ function Final() {
   };
 
   const handleDeleteCheckedBy = () => {
-    axios
+    apiCall
       .post(`${CHINSALI_STORE_URL}/${storeShift._id}/deletecheckedby`)
       .then(() => {
         check();

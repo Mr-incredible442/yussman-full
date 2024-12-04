@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import axios from 'axios';
+import apiCall from '../../../helpers/apiCall';
 
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
@@ -42,7 +42,7 @@ function AddIssued({ children, product, clear, storeShift }) {
     };
 
     try {
-      await axios
+      await apiCall
         .post(`${CHINSALI_STORE_URL}/${storeShift._id}/addissued`, receivedData)
         .then(() => {
           handleClose();

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import axios from 'axios';
+import apiCall from '../../../helpers/apiCall';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -17,7 +17,7 @@ function NextShift() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
-    axios
+    apiCall
       .post(`${SHOPA1_URL}/newshift`)
       .then(() => {
         setIsLoading(false);

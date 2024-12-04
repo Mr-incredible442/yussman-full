@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import apiCall from '../../helpers/apiCall';
 
 import { Container } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
@@ -41,7 +41,7 @@ const ShopWDetails = () => {
   }, []);
 
   const getShift = useCallback(() => {
-    axios
+    apiCall
       .get(`${SHOPW_URL}/${id}`)
       .then((res) => {
         setShift(res.data);

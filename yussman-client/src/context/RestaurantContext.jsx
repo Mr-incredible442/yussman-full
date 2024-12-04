@@ -1,6 +1,6 @@
 import { createContext, useEffect, useReducer, useState } from 'react';
 import { io } from 'socket.io-client';
-import axios from 'axios';
+import apiCall from '../helpers/apiCall';
 
 import { BASE_URL, RESTAURANT_LOCAL_URL } from '../helpers/variables';
 
@@ -22,7 +22,7 @@ export const RestaurantContextProvider = ({ children }) => {
   const [updatedStock, setUpdatedStock] = useState({});
 
   useEffect(() => {
-    axios.get(RESTAURANT_LOCAL_URL).then((response) => {
+    apiCall.get(RESTAURANT_LOCAL_URL).then((response) => {
       sumReceivedAmounts(response.data);
     });
   }, []);

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import axios from 'axios';
+import apiCall from '../../../helpers/apiCall';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -18,7 +18,7 @@ function DeleteTransaction({ id }) {
 
   const deleteTransaction = () => {
     setIsLoading(true);
-    axios
+    apiCall
       .delete(`${EMPLOYEE_URL}/deletetransaction/${id}`)
       .then(() => {
         handleClose();

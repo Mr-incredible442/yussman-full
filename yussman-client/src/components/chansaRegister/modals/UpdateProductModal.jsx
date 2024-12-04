@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import apiCall from '../../../helpers/apiCall';
 
 import { Form, Col, Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
@@ -60,7 +60,7 @@ function UpdateProductModal({ id, item }) {
       section: from.toLowerCase(),
     };
 
-    axios
+    apiCall
       .post(`${CHANSA_REGISTER_URL}/${id}/updatestock/${item._id}`, modalData)
       .then(() => {
         setIsSubmiting(false);

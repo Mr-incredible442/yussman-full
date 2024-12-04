@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import axios from 'axios';
+import apiCall from '../../../helpers/apiCall';
 
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
@@ -40,7 +40,7 @@ function AddReceived({ children, product, clear, storeShift }) {
     };
 
     try {
-      await axios
+      await apiCall
         .post(`${CHANSA_STORE_URL}/${storeShift._id}/addreceived`, receivedData)
         .then(() => {
           handleClose();

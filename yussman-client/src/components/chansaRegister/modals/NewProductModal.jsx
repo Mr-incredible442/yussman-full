@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState, useContext, useEffect } from 'react';
-import axios from 'axios';
+import apiCall from '../../../helpers/apiCall';
 
 import { Form, Col, Row, ListGroup } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
@@ -94,7 +94,7 @@ function NewProductModal({ id }) {
       section: from.toLowerCase(),
     };
 
-    axios
+    apiCall
       .post(`${CHANSA_REGISTER_URL}/${id}/addtostock`, modalData)
       .then(() => {
         handleClose();

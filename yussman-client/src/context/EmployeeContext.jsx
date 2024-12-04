@@ -1,6 +1,6 @@
 import { createContext, useEffect, useReducer } from 'react';
 import { io } from 'socket.io-client';
-import axios from 'axios';
+import apiCall from '../helpers/apiCall';
 
 import { BASE_URL, EMPLOYEE_URL } from '../helpers/variables';
 
@@ -66,7 +66,7 @@ export const EmployeeContextProvider = ({ children }) => {
 
   useEffect(() => {
     const getEmployees = async () => {
-      const { data } = await axios.get(`${EMPLOYEE_URL}/getemployees`);
+      const { data } = await apiCall.get(`${EMPLOYEE_URL}/getemployees`);
       employeeDispatch({ type: 'SET_EMPLOYEES', payload: data });
     };
     getEmployees();
@@ -74,7 +74,7 @@ export const EmployeeContextProvider = ({ children }) => {
 
   useEffect(() => {
     const getTransactions = async () => {
-      const { data } = await axios.get(`${EMPLOYEE_URL}/gettransactions`);
+      const { data } = await apiCall.get(`${EMPLOYEE_URL}/gettransactions`);
       transactionDispatch({ type: 'SET_TRANSACTIONS', payload: data });
     };
     getTransactions();

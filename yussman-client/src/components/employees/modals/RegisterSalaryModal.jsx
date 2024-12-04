@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import axios from 'axios';
+import apiCall from '../../../helpers/apiCall';
 import DatePicker from 'react-multi-date-picker';
 import 'react-multi-date-picker/styles/backgrounds/bg-gray.css';
 
@@ -114,7 +114,7 @@ function RegisterSalaryModal() {
 
     const postData = status === 'salary' ? salaryData : benefitAndCredit;
 
-    axios
+    apiCall
       .post(`${EMPLOYEE_URL}/transaction`, postData)
       .then(() => {
         handleClose();

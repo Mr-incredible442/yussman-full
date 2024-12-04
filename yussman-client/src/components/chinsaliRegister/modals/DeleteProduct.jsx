@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import axios from 'axios';
+import apiCall from '../../../helpers/apiCall';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -23,7 +23,7 @@ function DeleteProduct({ id, shiftId }) {
       return;
     }
 
-    axios
+    apiCall
       .post(`${CHINSALI_REGISTER_URL}/${shiftId}/deletestock/${id}`)
       .then(() => {
         handleClose();

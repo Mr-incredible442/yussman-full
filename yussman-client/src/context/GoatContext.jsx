@@ -18,7 +18,6 @@ const goatReducer = (state, action) => {
 // eslint-disable-next-line react/prop-types
 export const GoatContextProvider = ({ children }) => {
   const [suppliers, dispatch] = useReducer(goatReducer, { suppliers: null });
-  //const [suppliers, setSuppliers] = useState([]);
 
   useEffect(() => {
     const socket = io(BASE_URL);

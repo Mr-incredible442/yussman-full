@@ -46,6 +46,19 @@ function NavBar() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const token = localStorage.getItem('accessToken');
+      const lsUser = localStorage.getItem('user');
+      if (!token || !lsUser) {
+        handleLogout();
+      }
+    }, 2000);
+
+    return () => clearInterval(interval); // Cleanup on unmount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Navbar expand='lg' bg='black' data-bs-theme='dark'>
       <Container>

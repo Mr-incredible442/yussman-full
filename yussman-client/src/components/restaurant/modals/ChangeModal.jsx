@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import axios from 'axios';
+import apiCall from '../../../helpers/apiCall';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -20,7 +20,7 @@ function ChangeModal({ id }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
-    axios
+    apiCall
       .post(`${RESTAURANT_LOCAL_URL}/${id}/addtochange`, { amount })
       .then(() => {
         setAmount('');

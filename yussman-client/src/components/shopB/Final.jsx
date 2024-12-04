@@ -1,5 +1,5 @@
 import { useCallback, useContext, useEffect, useState } from 'react';
-import axios from 'axios';
+import apiCall from '../../helpers/apiCall';
 import { ShopBContext } from '../../context/ShopBContext';
 import { AuthContext } from '../../context/AuthContext';
 
@@ -80,7 +80,7 @@ function Final() {
   }, [shopBShiftT, totalSales, check]);
 
   const handleDeleteCashier = (name) => {
-    axios
+    apiCall
       .post(`${SHOPB_URL}/${shopBShiftT._id}/removecashier`, {
         name: name.toLowerCase(),
       })
@@ -89,23 +89,25 @@ function Final() {
       });
   };
   const handleDeleteAcountant = () => {
-    axios.post(`${SHOPB_URL}/${shopBShiftT._id}/removeaccountant`).then(() => {
-      check();
-    });
+    apiCall
+      .post(`${SHOPB_URL}/${shopBShiftT._id}/removeaccountant`)
+      .then(() => {
+        check();
+      });
   };
   const handleDeleteCheckedBy = () => {
-    axios.post(`${SHOPB_URL}/${shopBShiftT._id}/removecheckedby`).then(() => {
+    apiCall.post(`${SHOPB_URL}/${shopBShiftT._id}/removecheckedby`).then(() => {
       check();
     });
   };
 
   const handleDeleteDateIn = () => {
-    axios.post(`${SHOPB_URL}/${shopBShiftT._id}/deletedatein`).then(() => {
+    apiCall.post(`${SHOPB_URL}/${shopBShiftT._id}/deletedatein`).then(() => {
       check();
     });
   };
   const handleDeleteDateOut = () => {
-    axios.post(`${SHOPB_URL}/${shopBShiftT._id}/deletedateout`).then(() => {
+    apiCall.post(`${SHOPB_URL}/${shopBShiftT._id}/deletedateout`).then(() => {
       check();
     });
   };

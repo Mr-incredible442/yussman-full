@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import apiCall from '../../helpers/apiCall';
 
 import { Container, Button } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
@@ -13,7 +13,7 @@ function AllShifts() {
   const [disableDeleteBtn, setDisableDeleteBtn] = useState(false);
 
   const fetchData = () => {
-    axios
+    apiCall
       .get(`${SHOPA1_URL}/shifts`)
       .then((res) => {
         setShifts(res.data);

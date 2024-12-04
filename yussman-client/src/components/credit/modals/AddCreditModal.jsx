@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios';
+import apiCall from '../../../helpers/apiCall';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -40,7 +40,7 @@ function AddCreditModal() {
 
     setIsSubmitting(true);
 
-    axios
+    apiCall
       .post(`${CREDIT_URL}/newcredit`, {
         name: name.toLowerCase(),
         date,

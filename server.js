@@ -7,7 +7,7 @@ import { createServer } from 'http';
 import { Server } from 'socket.io';
 import { fileURLToPath } from 'url';
 
-// import { verifyToken } from './middleware/authMiddlleware.js';
+import { verifyToken } from './middleware/authMiddlleware.js';
 
 // route imports
 import usersRoutes from './routes/users.js';
@@ -90,26 +90,26 @@ app.use(express.static(path.join(__dirname, 'yussman-client', 'dist')));
 //serenje
 app.use('/api/users', usersRoutes);
 app.use('/api/goat', suppliersRoutes);
-app.use('/api/restaurant', restaurantRoutes);
-app.use('/api/store', storeRoutes);
-app.use('/api/employee', employeeRoutes);
-app.use('/api/shopa1', shopA1Routes);
-app.use('/api/shopa2', shopA2Routes);
-app.use('/api/shopb', shopBRoutes);
-app.use('/api/shopw', shopWRoutes);
-app.use('/api/shopc', shopCRoutes);
-app.use('/api/register', registerRoutes);
-app.use('/api/credit', creditRoutes);
+app.use('/api/restaurant', verifyToken, restaurantRoutes);
+app.use('/api/store', verifyToken, storeRoutes);
+app.use('/api/employee', verifyToken, employeeRoutes);
+app.use('/api/shopa1', verifyToken, shopA1Routes);
+app.use('/api/shopa2', verifyToken, shopA2Routes);
+app.use('/api/shopb', verifyToken, shopBRoutes);
+app.use('/api/shopw', verifyToken, shopWRoutes);
+app.use('/api/shopc', verifyToken, shopCRoutes);
+app.use('/api/register', verifyToken, registerRoutes);
+app.use('/api/credit', verifyToken, creditRoutes);
 
 //chinsali
-app.use('/api/chinsali/restaurant', chinsaliRestaurantRoutes);
-app.use('/api/chinsali/store', chinsaliStoreRoutes);
-app.use('/api/chinsali/register', chinsaliRegisterRoutes);
+app.use('/api/chinsali/restaurant', verifyToken, chinsaliRestaurantRoutes);
+app.use('/api/chinsali/store', verifyToken, chinsaliStoreRoutes);
+app.use('/api/chinsali/register', verifyToken, chinsaliRegisterRoutes);
 
 //chansa
-app.use('/api/chansa/restaurant', chansaRestaurantRoutes);
-app.use('/api/chansa/store', chansaStoreRoutes);
-app.use('/api/chansa/register', chansaRegisterRoutes);
+app.use('/api/chansa/restaurant', verifyToken, chansaRestaurantRoutes);
+app.use('/api/chansa/store', verifyToken, chansaStoreRoutes);
+app.use('/api/chansa/register', verifyToken, chansaRegisterRoutes);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'yussman-client', 'dist', 'index.html'));

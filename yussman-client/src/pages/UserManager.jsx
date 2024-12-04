@@ -1,11 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Container, Table } from 'react-bootstrap';
 
-import axios from 'axios';
-
 import { LOCAL_URL } from '../helpers/variables';
 import NewUserModal from '../components/users/modals/NewUserModal';
 import DeleteUser from '../components/users/modals/DeleteUser';
+import apiCall from '../helpers/apiCall';
 
 function UserManager() {
   const [users, setUsers] = useState([]);
@@ -15,12 +14,8 @@ function UserManager() {
   }, []);
 
   const getUsers = useCallback(() => {
-    const token = localStorage.getItem('accessToken');
-
-    axios
-      .get(`${LOCAL_URL}/users`, {
-        headers: { authorization: `Bearer ${token}` },
-      })
+    apiCall
+      .get(`${LOCAL_URL}/users`)
       .then((res) => {
         setUsers(res.data.users);
       })

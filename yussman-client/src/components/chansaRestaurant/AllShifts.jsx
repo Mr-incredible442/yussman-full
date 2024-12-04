@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import axios from 'axios';
+import apiCall from '../../helpers/apiCall';
 
 import { Container, Button } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
@@ -22,7 +22,7 @@ function AllShifts() {
   const [totalCash, setTotalCash] = useState(0);
 
   const fetchData = useCallback(() => {
-    axios
+    apiCall
       .get(`${CHANSA_RESTAURANT_URL}/paginatedshifts${currentPage}`)
       .then((res) => {
         setShifts(res.data);

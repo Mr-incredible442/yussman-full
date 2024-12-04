@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import apiCall from '../../helpers/apiCall';
 
 import { STORE_LOCAL_URL } from '../../helpers/variables';
 
@@ -25,7 +25,7 @@ function ShiftDetails() {
   const { id } = useParams();
 
   useEffect(() => {
-    axios
+    apiCall
       .get(`${STORE_LOCAL_URL}/${id}`)
       .then((res) => {
         setShift(res.data);

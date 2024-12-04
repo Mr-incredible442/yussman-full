@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import axios from 'axios';
+import apiCall from '../helpers/apiCall';
 import { Route, Routes, Link } from 'react-router-dom';
 // import _ from 'lodash';
 
@@ -73,12 +73,12 @@ const Goat = () => {
 
   //post a new goat
   async function createNew(data) {
-    axios.post(GOAT_LOCAL_URL, data).then(() => {});
+    apiCall.post(GOAT_LOCAL_URL, data).then(() => {});
   }
 
   //Delete a goat
   const handleDelete = (id) => {
-    axios
+    apiCall
       .delete(GOAT_LOCAL_URL + '/' + id)
       .then(() => {})
       .catch((err) => {
@@ -89,7 +89,7 @@ const Goat = () => {
 
   //update a single goat
   const handleUpdate = (id, data) => {
-    axios
+    apiCall
       .patch(GOAT_LOCAL_URL + '/' + id, data)
       .then(() => {})
       .catch((err) => {

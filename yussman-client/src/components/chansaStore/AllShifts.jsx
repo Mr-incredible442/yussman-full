@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import apiCall from '../../helpers/apiCall';
 
 import { Link } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ function AllShifts() {
   const [shifts, setShifts] = useState([]);
 
   const fetchData = () => {
-    axios
+    apiCall
       .get(`${CHANSA_STORE_URL}/shifts`)
       .then((res) => {
         setShifts(res.data);

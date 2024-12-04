@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import axios from 'axios';
+import apiCall from '../../../helpers/apiCall';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -30,7 +30,7 @@ function NewProductModal({ id }) {
       name: name.trim(),
       price: Number(price),
     };
-    axios
+    apiCall
       .post(`${SHOPA1_URL}/${id}/addtostock`, modalData)
       .then(() => {
         handleClear();

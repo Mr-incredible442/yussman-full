@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import axios from 'axios';
+import apiCall from '../../../helpers/apiCall';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -21,7 +21,7 @@ function PaymentConfirm({ unpaidTransactions }) {
         (transaction) => transaction._id,
       );
 
-      await axios
+      await apiCall
         .post(`${EMPLOYEE_URL}/updatetransaction/paid`, {
           transactionIds,
         })

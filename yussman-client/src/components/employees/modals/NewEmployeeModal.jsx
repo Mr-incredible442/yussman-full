@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios';
+import apiCall from '../../../helpers/apiCall';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -46,7 +46,7 @@ function NewEmployeeModal() {
 
     setIsSubmitting(true);
 
-    axios
+    apiCall
       .post(`${EMPLOYEE_URL}/newemployee`, {
         nrc: nrc,
         firstName: firstName.toLowerCase().trim(),

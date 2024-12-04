@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import axios from 'axios';
+import apiCall from '../../../helpers/apiCall';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -23,7 +23,7 @@ function DeleteCredit({ id }) {
       return;
     }
 
-    axios
+    apiCall
       .delete(`${CREDIT_URL}/${id}`)
       .then(() => {
         handleClose();

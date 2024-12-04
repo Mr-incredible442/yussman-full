@@ -1,6 +1,6 @@
 import { createContext, useEffect, useReducer, useState } from 'react';
 import { io } from 'socket.io-client';
-import axios from 'axios';
+import apiCall from '../helpers/apiCall';
 
 import { BASE_URL, CHINSALI_RESTAURANT_URL } from '../helpers/variables';
 
@@ -22,7 +22,7 @@ export const ChinsaliRestaurantContextProvider = ({ children }) => {
   const [updatedStock, setUpdatedStock] = useState({});
 
   useEffect(() => {
-    axios.get(CHINSALI_RESTAURANT_URL).then((response) => {
+    apiCall.get(CHINSALI_RESTAURANT_URL).then((response) => {
       sumReceivedAmounts(response.data);
     });
   }, []);

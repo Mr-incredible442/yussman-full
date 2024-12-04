@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useReducer, useState } from 'react';
 import { io } from 'socket.io-client';
-import axios from 'axios';
+import apiCall from '../helpers/apiCall';
 
 import { CHINSALI_REGISTER_URL, BASE_URL } from '../helpers/variables';
 
@@ -25,7 +25,7 @@ export const ChinsaliRegisterContextProvider = ({ children }) => {
   const [updatedStock, setUpdatedStock] = useState({});
 
   useEffect(() => {
-    axios.get(CHINSALI_REGISTER_URL).then((response) => {
+    apiCall.get(CHINSALI_REGISTER_URL).then((response) => {
       sumReceivedAmounts(response.data);
     });
   }, []);

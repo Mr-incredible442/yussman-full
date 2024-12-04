@@ -1,6 +1,6 @@
 import { createContext, useEffect, useReducer, useState } from 'react';
 import { io } from 'socket.io-client';
-import axios from 'axios';
+import apiCall from '../helpers/apiCall';
 
 import { BASE_URL, SHOPC_URL } from '../helpers/variables';
 
@@ -23,7 +23,7 @@ export const ShopCContextProvider = ({ children }) => {
   const [updatedStock, setUpdatedStock] = useState({});
 
   useEffect(() => {
-    axios.get(SHOPC_URL).then((response) => {
+    apiCall.get(SHOPC_URL).then((response) => {
       sumReceivedAmounts(response.data);
     });
   }, []);

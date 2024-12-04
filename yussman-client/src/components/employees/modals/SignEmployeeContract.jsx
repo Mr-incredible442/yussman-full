@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import axios from 'axios';
+import apiCall from '../../../helpers/apiCall';
 import { useNavigate } from 'react-router-dom';
 
 import Button from 'react-bootstrap/Button';
@@ -25,7 +25,7 @@ function SignEmployeeContract({ employee }) {
   function handleSuspendEmployee(e) {
     e.preventDefault();
     setIsLoading(true);
-    axios
+    apiCall
       .post(`${EMPLOYEE_URL}/togglecontract/${employee._id}`, {
         contractStart: startDate,
         contractEnd: endDate,

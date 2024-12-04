@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from 'react';
-import axios from 'axios';
+import apiCall from '../../helpers/apiCall';
 
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
@@ -70,7 +70,7 @@ function Stock() {
       cstock: Number(editedCStock),
     };
 
-    axios
+    apiCall
       .post(`${SHOPC_URL}/${shopCShift._id}/editstock/${itemId}`, modalData)
       .then(() => {
         setEditingItemId(null);

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import axios from 'axios';
+import apiCall from '../../helpers/apiCall';
 import { useParams } from 'react-router-dom';
 
 import { CHANSA_REGISTER_URL } from '../../helpers/variables';
@@ -13,7 +13,7 @@ function RegisterDetails() {
   const { id } = useParams();
 
   const getShift = useCallback(() => {
-    axios
+    apiCall
       .get(`${CHANSA_REGISTER_URL}/${id}`)
       .then((res) => {
         setShift(res.data);

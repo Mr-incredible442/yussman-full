@@ -1,6 +1,6 @@
 import { Button, Col, Container, Row, Table } from 'react-bootstrap';
 
-import axios from 'axios';
+import apiCall from '../../helpers/apiCall';
 
 import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
@@ -21,7 +21,7 @@ function EmployeeDetails() {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    axios
+    apiCall
       .get(`${EMPLOYEE_URL}/getemployee/${id}`)
       .then((res) => {
         setEmployee(res.data.employee);

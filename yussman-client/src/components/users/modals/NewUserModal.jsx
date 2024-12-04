@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import axios from 'axios';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
+
+import apiCall from '../../../helpers/apiCall';
 
 import { LOCAL_URL } from '../../../helpers/variables';
 
@@ -16,8 +17,6 @@ function NewUserModal({ setUsers }) {
   const [role, setrole] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-
-  const token = localStorage.getItem('accessToken');
 
   const [show, setShow] = useState(false);
 
@@ -36,22 +35,14 @@ function NewUserModal({ setUsers }) {
     e.preventDefault();
     setIsLoading(true);
     setError('');
-    axios
-      .post(
-        `${LOCAL_URL}/users/signup`,
-        {
-          firstName: firstName.toLowerCase(),
-          lastName: lastName.toLowerCase(),
-          number,
-          password,
-          role,
-        },
-        {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        },
-      )
+    apiCall
+      .post(`${LOCAL_URL}/users/signup`, {
+        firstName: firstName.toLowerCase(),
+        lastName: lastName.toLowerCase(),
+        number,
+        password,
+        role,
+      })
       .then((res) => {
         setUsers(res.data.users);
         handleClear();

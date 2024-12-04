@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import axios from 'axios';
+import apiCall from '../../../helpers/apiCall';
 import { Form } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -34,7 +34,7 @@ function ExpenseModal({ id }) {
       return;
     }
 
-    axios
+    apiCall
       .post(`${CHINSALI_REGISTER_URL}/${id}/addtoexpense`, {
         description: description.toLowerCase(),
         amount: Number(amount),

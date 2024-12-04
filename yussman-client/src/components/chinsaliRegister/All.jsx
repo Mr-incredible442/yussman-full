@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import axios from 'axios';
+import apiCall from '../../helpers/apiCall';
 import { Button, Container, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
@@ -15,7 +15,7 @@ function All() {
   const { user } = useContext(AuthContext);
 
   const getShifts = () => {
-    axios
+    apiCall
       .get(`${CHINSALI_REGISTER_URL}/all`)
       .then((res) => {
         const sortedShifts = res.data.sort((a, b) => {

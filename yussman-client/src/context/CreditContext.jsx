@@ -1,6 +1,6 @@
 import { createContext, useEffect, useReducer } from 'react';
 import { io } from 'socket.io-client';
-import axios from 'axios';
+import apiCall from '../helpers/apiCall';
 
 import { BASE_URL, CREDIT_URL } from '../helpers/variables';
 
@@ -21,7 +21,7 @@ export const CreditContextProvider = ({ children }) => {
   const [credit, dispatch] = useReducer(creditReducer, { credit: null });
 
   useEffect(() => {
-    axios.get(CREDIT_URL).then((response) => {
+    apiCall.get(CREDIT_URL).then((response) => {
       dispatch({ type: 'SET_CREDIT', payload: response.data });
     });
   }, []);

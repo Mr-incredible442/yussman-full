@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import apiCall from '../../helpers/apiCall';
 
 import { Container } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
@@ -51,7 +51,7 @@ const Details = () => {
   }, []);
 
   const getShift = useCallback(() => {
-    axios
+    apiCall
       .get(`${CHINSALI_RESTAURANT_URL}/${id}`)
       .then((res) => {
         setShift(res.data);

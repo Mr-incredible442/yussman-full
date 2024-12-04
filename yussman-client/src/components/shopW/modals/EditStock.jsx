@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState, useContext } from 'react';
-import axios from 'axios';
+import apiCall from '../../../helpers/apiCall';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -46,7 +46,7 @@ function NewProductModal({ id, stock, getShift }) {
       damage: Number(damage),
       cstock: Number(cStock),
     };
-    axios
+    apiCall
       .post(`${SHOPW_URL}/${id}/editstock/${stock._id}`, modalData)
       .then(() => {
         handleClear();

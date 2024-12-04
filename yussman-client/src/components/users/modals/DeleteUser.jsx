@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import axios from 'axios';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-
 import { AiOutlineDelete } from 'react-icons/ai';
+
+import apiCall from '../../../helpers/apiCall';
 
 import { LOCAL_URL } from '../../../helpers/variables';
 
@@ -13,17 +13,13 @@ function DeleteUser({ id, getUsers }) {
   const [show, setShow] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const token = localStorage.getItem('accessToken');
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const deleteUser = () => {
     setIsLoading(true);
-    axios
-      .delete(`${LOCAL_URL}/users/${id}`, {
-        headers: { authorization: `Bearer ${token}` },
-      })
+    apiCall
+      .delete(`${LOCAL_URL}/users/${id}`)
       .then(() => {
         getUsers();
         handleClose();

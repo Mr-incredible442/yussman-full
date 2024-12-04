@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useCallback, useEffect, useState } from 'react';
-import axios from 'axios';
+import apiCall from '../../../helpers/apiCall';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -59,7 +59,7 @@ function EditEmployeeModal({ employee }) {
 
     setIsSubmitting(true);
 
-    axios
+    apiCall
       .put(`${EMPLOYEE_URL}/updateemployee/${employee._id}`, {
         nrc: nrc,
         firstName: firstName.toLowerCase(),

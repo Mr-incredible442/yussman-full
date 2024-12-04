@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
-import axios from 'axios';
+import apiCall from '../../../helpers/apiCall';
 
 import { SHOPW_URL } from '../../../helpers/variables';
 
@@ -39,7 +39,7 @@ function ReceivedModal({ show, handleClose, result, id }) {
       return;
     }
     setIsLoading(true);
-    axios
+    apiCall
       .post(`${SHOPW_URL}/${id}/addtoreceived`, modalData)
       .then(() => {
         handleClose();

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import axios from 'axios';
+import apiCall from '../../../helpers/apiCall';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
@@ -18,7 +18,7 @@ function AddCashier({ id }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
-    axios
+    apiCall
       .post(`${SHOPW_URL}/${id}/addcashier`, {
         name: name.toLowerCase(),
       })

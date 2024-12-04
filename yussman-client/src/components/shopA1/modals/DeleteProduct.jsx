@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import axios from 'axios';
+import apiCall from '../../../helpers/apiCall';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -17,7 +17,7 @@ function DeleteProduct({ endpoint, id, shiftId }) {
 
   const deleteReceived = () => {
     setIsLoading(true);
-    axios
+    apiCall
       .delete(`${SHOPA1_URL}/${shiftId}/${endpoint}/${id}`)
       .then(() => {
         handleClose();

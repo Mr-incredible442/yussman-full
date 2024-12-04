@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useReducer, useState } from 'react';
 import { io } from 'socket.io-client';
-import axios from 'axios';
+import apiCall from '../helpers/apiCall';
 
 import { CHANSA_STORE_URL, BASE_URL } from '../helpers/variables';
 
@@ -23,7 +23,7 @@ export const ChansaStoreContextProvider = ({ children }) => {
   const [updatedStock, setUpdatedStock] = useState({});
 
   useEffect(() => {
-    axios.get(CHANSA_STORE_URL).then((response) => {
+    apiCall.get(CHANSA_STORE_URL).then((response) => {
       sumReceivedAmounts(response.data);
     });
   }, []);

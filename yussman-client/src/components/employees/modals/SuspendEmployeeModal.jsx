@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import axios from 'axios';
+import apiCall from '../../../helpers/apiCall';
 import { useNavigate } from 'react-router-dom';
 
 import Button from 'react-bootstrap/Button';
@@ -22,7 +22,7 @@ function SuspendEmployeeModal({ employee }) {
 
   function handleSuspendEmployee() {
     setIsLoading(true);
-    axios
+    apiCall
       .post(`${EMPLOYEE_URL}/togglestatus/${employee._id}`)
       .then(() => {
         handleClose();

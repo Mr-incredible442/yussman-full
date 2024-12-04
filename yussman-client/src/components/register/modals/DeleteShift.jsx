@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import axios from 'axios';
+import apiCall from '../../../helpers/apiCall';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -23,7 +23,7 @@ function DeleteShift({ shiftId, getShifts }) {
       return;
     }
 
-    axios
+    apiCall
       .delete(`${REGISTER_URL}/${shiftId}`)
       .then(() => {
         handleClose();

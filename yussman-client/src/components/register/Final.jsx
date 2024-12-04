@@ -1,5 +1,5 @@
 import { useCallback, useContext, useEffect, useState } from 'react';
-import axios from 'axios';
+import apiCall from '../../helpers/apiCall';
 
 import { Row, Col } from 'react-bootstrap';
 
@@ -60,17 +60,17 @@ function Final() {
   }, [check]);
 
   const handleDeleteDate = () => {
-    axios.post(`${REGISTER_URL}/${RegisterShift._id}/deletedate`).then(() => {
+    apiCall.post(`${REGISTER_URL}/${RegisterShift._id}/deletedate`).then(() => {
       check();
     });
   };
   const handleDeleteName = () => {
-    axios.post(`${REGISTER_URL}/${RegisterShift._id}/deletename`).then(() => {
+    apiCall.post(`${REGISTER_URL}/${RegisterShift._id}/deletename`).then(() => {
       check();
     });
   };
   const handleDeleteAccountant = () => {
-    axios
+    apiCall
       .post(`${REGISTER_URL}/${RegisterShift._id}/deleteaccountant`)
       .then(() => {
         check();
@@ -78,15 +78,17 @@ function Final() {
   };
 
   const handleDeleteCash = () => {
-    axios.post(`${REGISTER_URL}/${RegisterShift._id}/deletecash`).then(() => {
+    apiCall.post(`${REGISTER_URL}/${RegisterShift._id}/deletecash`).then(() => {
       check();
     });
   };
 
   const handleDeleteChange = () => {
-    axios.post(`${REGISTER_URL}/${RegisterShift._id}/deletechange`).then(() => {
-      check();
-    });
+    apiCall
+      .post(`${REGISTER_URL}/${RegisterShift._id}/deletechange`)
+      .then(() => {
+        check();
+      });
   };
 
   return (

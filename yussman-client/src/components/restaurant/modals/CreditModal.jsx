@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import axios from 'axios';
+import apiCall from '../../../helpers/apiCall';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -17,10 +17,11 @@ function CreditModal({ shift }) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const handleAddCredit = async (e) => {
+  const handleAddCredit = (e) => {
     e.preventDefault();
     setIsLoading(true);
-    await axios
+
+    apiCall
       .post(`${RESTAURANT_LOCAL_URL}/${shift._id}/addtocredit`, {
         description,
         amount,

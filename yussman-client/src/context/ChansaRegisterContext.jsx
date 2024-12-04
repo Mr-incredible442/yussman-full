@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useReducer, useState } from 'react';
 import { io } from 'socket.io-client';
-import axios from 'axios';
+import apiCall from '../helpers/apiCall';
 
 import { CHANSA_REGISTER_URL, BASE_URL } from '../helpers/variables';
 
@@ -25,7 +25,7 @@ export const ChansaRegisterContextProvider = ({ children }) => {
   const [updatedStock, setUpdatedStock] = useState({});
 
   useEffect(() => {
-    axios.get(CHANSA_REGISTER_URL).then((response) => {
+    apiCall.get(CHANSA_REGISTER_URL).then((response) => {
       sumReceivedAmounts(response.data);
     });
   }, []);
@@ -39,10 +39,6 @@ export const ChansaRegisterContextProvider = ({ children }) => {
 
   const sumReceivedAmounts = (data) => {
     if (data !== null) {
-      // const sortedStock = data.stock.sort((a, b) =>
-      //   a.name.localeCompare(b.name),
-      // );
-      // const updatedData = { ...data, stock: sortedStock };
       setUpdatedStock(data);
     }
   };

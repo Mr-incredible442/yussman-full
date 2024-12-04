@@ -1,5 +1,5 @@
 import { useCallback, useContext, useEffect, useState } from 'react';
-import axios from 'axios';
+import apiCall from '../../helpers/apiCall';
 import { ChinsaliRestaurantContext } from '../../context/ChinsaliRestaurantContext';
 
 import Row from 'react-bootstrap/Row';
@@ -99,7 +99,7 @@ function Final() {
   }, [shift, totalCollectedAmount, totalSales, check]);
 
   const handleDeleteCashier = (name) => {
-    axios
+    apiCall
       .post(`${CHINSALI_RESTAURANT_URL}/${shift._id}/removecashier`, {
         name: name.toLowerCase(),
       })
@@ -108,21 +108,21 @@ function Final() {
       });
   };
   const handleDeleteAcountant = () => {
-    axios
+    apiCall
       .post(`${CHINSALI_RESTAURANT_URL}/${shift._id}/removeaccountant`)
       .then(() => {
         check();
       });
   };
   const handleDeleteShift = () => {
-    axios
+    apiCall
       .post(`${CHINSALI_RESTAURANT_URL}/${shift._id}/deleteshift`)
       .then(() => {
         check();
       });
   };
   const handleDeleteDate = () => {
-    axios
+    apiCall
       .post(`${CHINSALI_RESTAURANT_URL}/${shift._id}/deletedate`)
       .then(() => {
         check();
