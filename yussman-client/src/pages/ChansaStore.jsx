@@ -16,7 +16,7 @@ function Store() {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    document.title = 'Yussman - Chinsali Store';
+    document.title = 'Yussman - Chansa Store';
   }, []);
 
   return (

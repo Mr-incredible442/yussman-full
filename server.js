@@ -42,8 +42,8 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    // origin: 'https://yussman.net/',
-    origin: '*',
+    origin: 'https://yussman.net/',
+    // origin: '*',
   },
 });
 
@@ -76,8 +76,8 @@ app.use((req, res, next) => {
 
 app.use(
   cors({
-    // origin: 'https://yussman.net/',
-    origin: '*',
+    origin: 'https://yussman.net/',
+    // origin: '*',
   }),
 );
 app.use(express.json());

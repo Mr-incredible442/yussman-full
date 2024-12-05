@@ -22,7 +22,7 @@ function ChinsaliRestaurant() {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    document.title = 'Yussman -Chinsali  Restaurant';
+    document.title = 'Yussman -Chansa  Restaurant';
   }, []);
 
   const handleTabSelect = (selectedTab) => {

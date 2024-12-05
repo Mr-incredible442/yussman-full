@@ -131,7 +131,7 @@ function AllShifts() {
               <td className='d-flex flex-row gap-1 justify-content-center'>
                 {shift.status === 'previous' && (
                   <Link
-                    to={`/chinsalirestaurant/${shift._id}`}
+                    to={`/chansarestaurant/${shift._id}`}
                     style={{ textDecoration: 'none' }}
                     target='_blank'>
                     <Button variant='outline-primary me-1' size='sm'>
