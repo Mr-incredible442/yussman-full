@@ -25,8 +25,9 @@ function NavBar() {
     const resetInactivityTimer = () => {
       clearTimeout(inactivityTimer);
       inactivityTimer = setTimeout(() => {
+        console.log('Logging out due to inactivity'); // Debugging
         handleLogout();
-      }, 60_000 * 20);
+      }, 60_000 * 30);
     };
 
     const handleActivity = () => {
@@ -37,10 +38,15 @@ function NavBar() {
 
     window.addEventListener('mousemove', handleActivity);
     window.addEventListener('keypress', handleActivity);
+    window.addEventListener('scroll', handleActivity);
+    window.addEventListener('touchstart', handleActivity);
 
     return () => {
       window.removeEventListener('mousemove', handleActivity);
       window.removeEventListener('keypress', handleActivity);
+      window.removeEventListener('scroll', handleActivity);
+      window.removeEventListener('touchstart', handleActivity);
+
       clearTimeout(inactivityTimer);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -51,9 +57,10 @@ function NavBar() {
       const token = localStorage.getItem('accessToken');
       const lsUser = localStorage.getItem('user');
       if (!token || !lsUser) {
+        console.log('Logging out due to missing token or user'); // Debugging
         handleLogout();
       }
-    }, 2000);
+    }, 10000);
 
     return () => clearInterval(interval); // Cleanup on unmount
     // eslint-disable-next-line react-hooks/exhaustive-deps
