@@ -25,7 +25,6 @@ function NavBar() {
     const resetInactivityTimer = () => {
       clearTimeout(inactivityTimer);
       inactivityTimer = setTimeout(() => {
-        console.log('Logging out due to inactivity'); // Debugging
         handleLogout();
       }, 60_000 * 30);
     };
@@ -52,19 +51,19 @@ function NavBar() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const token = localStorage.getItem('accessToken');
-      const lsUser = localStorage.getItem('user');
-      if (!token || !lsUser) {
-        console.log('Logging out due to missing token or user'); // Debugging
-        handleLogout();
-      }
-    }, 10000);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     const token = localStorage.getItem('accessToken');
+  //     const lsUser = localStorage.getItem('user');
+  //     if (!token || !lsUser) {
+  //       console.log('Logging out due to missing token or user'); // Debugging
+  //       handleLogout();
+  //     }
+  //   }, 10000);
 
-    return () => clearInterval(interval); // Cleanup on unmount
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  //   return () => clearInterval(interval); // Cleanup on unmount
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   return (
     <Navbar expand='lg' bg='black' data-bs-theme='dark'>
